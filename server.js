@@ -32,11 +32,21 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 if (process.env.NODE_ENV !== "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
+
+  app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "https://alex-trivia.herokuapp.com");
+    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+    );
+    next();
+  });
 }
 
 app.get("/", (req, res) => {
   res.send("api running");
-})
+});
 
 app.get("/:cat", (req, res) => {
   //extracting chosen Category number
