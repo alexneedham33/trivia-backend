@@ -38,6 +38,8 @@ app.get("/", (req, res) => {
   res.send("api running");
 });
 
+
+
 app.get("/:cat", (req, res) => {
   //extracting chosen Category number
   let chosenCatNum = req.params.cat;
@@ -50,6 +52,11 @@ app.get("/:cat", (req, res) => {
   console.log(allArrays[chosenCatNum]);
   let chosenCat = categories[chosenCatNum];
   console.log(chosenCat);
+
+
+
+
+
 
   function sql1(chosenCat) {
     return new Promise((resolve, reject) => {
@@ -120,6 +127,9 @@ app.get("/:cat", (req, res) => {
   sql1().then((res) => sql2(res));
 });
 
+
+
+
 if (process.env.NODE_ENV !== "production") {
   app.get("/*", (req, res) => {
     res.sendFile(path.join(__dirname, "../client/build", "index.html"));
@@ -177,7 +187,7 @@ app.listen(port, () => {
             console.log(row);
           });
         }),
-      2000
+      333
     );
   });
 });
